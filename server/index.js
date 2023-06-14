@@ -32,6 +32,23 @@ app.get('/api/bs/nba', (req, res) => {
 });
 
 // MLB json
+app.get('/api/bs/mlb', (req, res) => {
+  let response;
+  axios
+    .get(
+      'https://chumley.barstoolsports.com/dev/data/games/eed38457-db28-4658-ae4f-4d4d38e9e212.json'
+    )
+    .then((res) => {
+      response = res.data;
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    })
+    .finally(() => {
+      res.send(response);
+    });
+});
 
 // GET from db
 
