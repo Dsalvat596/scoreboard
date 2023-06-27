@@ -1,0 +1,38 @@
+.scoreboard-container {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 150px;
+}
+
+.gameHeader {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+}
+
+.score {
+  font-size: 3rem;
+}
+
+.boxscore-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: red;
+  grid-template-columns: 200px;
+  grid-auto-flow: column;
+}
+.score-col {
+  background-color: aliceblue;
+}
+
+.box-header {
+  background-color: blueviolet;
+}

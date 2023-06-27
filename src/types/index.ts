@@ -171,6 +171,7 @@ export interface NbaGame {
   away_period_scores: Array<number>;
   home_period_scores: Array<number>;
   away_stats: Array<BasketballPlayerStats>;
+  home_stats: Array<BasketballPlayerStats>;
   officials: Array<Official>;
   event_information: EventInformation;
   away_totals: BasketballTotals;
