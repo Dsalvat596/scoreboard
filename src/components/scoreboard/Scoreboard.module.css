@@ -1,15 +1,20 @@
-.scoreboard-container {
+.score_container {
   display: flex;
   text-align: center;
   flex-direction: column;
   align-items: center;
-  padding: 150px;
+  border: 5px solid yellow;
+}
+
+.scoreboard {
+  border: 5px solid green;
+  background-color: darkgray;
 }
 
 .gameHeader {
   display: flex;
-  flex: 1;
-  justify-content: space-between;
+  align-items: center;
+  width: auto;
 }
 
 .team {
@@ -19,9 +24,10 @@
 
 .score {
   font-size: 3rem;
+  margin: 1rem;
 }
 
-.boxscore-grid {
+.boxscore_grid {
   display: grid;
   gap: 1.5rem;
   padding: 2rem;
@@ -29,10 +35,10 @@
   grid-template-columns: 200px;
   grid-auto-flow: column;
 }
-.score-col {
+.score_col {
   background-color: aliceblue;
 }
 
-.box-header {
+.box_header {
   background-color: blueviolet;
 }
