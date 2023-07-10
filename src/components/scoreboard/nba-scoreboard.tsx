@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styles from './Scoreboard.module.css';
-import { NbaGame } from '../../types';
+import { BasketballPlayerStats, NbaGame } from '../../types';
 import cx from 'classnames';
 import Player from '../player/Player';
 import Tab from '../tab/Tab';
@@ -15,10 +15,6 @@ export enum SelectedTeam {
 }
 
 const NbaScoreboard: FC<ScoreBoardProps> = (props) => {
-  const [selectedTeamTab, setSelectedTeamTab] = useState<SelectedTeam>(
-    SelectedTeam.away
-  );
-
   const {
     away_period_scores,
     away_stats,
@@ -31,9 +27,20 @@ const NbaScoreboard: FC<ScoreBoardProps> = (props) => {
     home_totals,
     officials,
   } = props.data;
+  const [selectedTeamTab, setSelectedTeamTab] = useState<SelectedTeam>(
+    SelectedTeam.away
+  );
+  const [selectedTeamData, setSelectedTeamData] =
+    useState<BasketballPlayerStats[]>(away_stats);
+
+  useEffect(() => {
+    if (selectedTeamTab === SelectedTeam.away) setSelectedTeamData(away_stats);
+    if (selectedTeamTab === SelectedTeam.home) setSelectedTeamData(home_stats);
+  }, [away_stats, home_stats, selectedTeamTab]);
+
   return (
     <div className={styles.score_container}>
-      <div className={styles.scoreboards}>
+      <div className={styles.scoreboard}>
         <div className={styles.gameHeader}>
           <div className={cx(styles.team, styles.awayTeam)}>
             <div>{away_team.full_name}</div>
@@ -93,11 +100,13 @@ const NbaScoreboard: FC<ScoreBoardProps> = (props) => {
           selectedTab={selectedTeamTab}
           onTabSelect={(tab) => setSelectedTeamTab(tab)}
         />
-        <div className={styles.players_details}>
-          {away_stats.map((player) => (
-            <Player player={player} />
-          ))}
-        </div>
+        {selectedTeamData && (
+          <div className={styles.players_details}>
+            {selectedTeamData.map((player, idx) => (
+              <Player key={`${player.last_name}__${idx}`} player={player} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

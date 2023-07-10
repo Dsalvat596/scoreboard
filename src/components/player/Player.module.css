@@ -1,0 +1,13 @@
+.collapsible .content {
+  padding: 6px;
+  background-color: #eeeeee;
+}
+
+.collapsible {
+  width: 100%;
+}
+.collapsible .header {
+  background-color: #dddddd;
+  padding: 6px;
+  cursor: pointer;
+}
